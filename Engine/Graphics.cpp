@@ -240,6 +240,25 @@ Graphics::Graphics( HWNDKey& key )
 		_aligned_malloc( sizeof( Color ) * Graphics::ScreenWidth * Graphics::ScreenHeight,16u ) );
 }
 
+void Graphics::DrawCircle(int x, int y, int radius, Color c)
+{
+	const int radius_suq = radius * radius;
+
+	for (int x_loop = x - radius; x_loop < x + radius; x_loop++)
+	{
+		for (int y_loop = y - radius; y_loop < y + radius; y_loop++)
+		{
+			const int x_diff = x - x_loop;
+			const int y_diff = y - y_loop;
+
+			if ((x_diff * x_diff)+(y_diff * y_diff) <= radius_suq)
+			{
+				PutPixel(x_loop,y_loop,c);
+			}
+		}
+	}
+}
+
 Graphics::~Graphics()
 {
 	// free sysbuffer memory (aligned free)
