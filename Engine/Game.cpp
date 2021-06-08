@@ -28449,5 +28449,5 @@ void Game::ComposeFrame()
 		meter.Draw( gfx );
 	}
 
-	gfx.DrawCircle(400, 300, 100, { 0,0,255 });
+	gfx.DrawDonut(400, 300, 100, 10,{ 0,0,255 });
 }
