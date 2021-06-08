@@ -240,9 +240,10 @@ Graphics::Graphics( HWNDKey& key )
 		_aligned_malloc( sizeof( Color ) * Graphics::ScreenWidth * Graphics::ScreenHeight,16u ) );
 }
 
-void Graphics::DrawCircle(int x, int y, int radius, Color c)
+void Graphics::DrawDonut(int x, int y, int radius, int thickness, Color c)
 {
 	const int radius_suq = radius * radius;
+	const int thickness_suq = (radius - thickness) * (radius - thickness);
 
 	for (int x_loop = x - radius; x_loop < x + radius; x_loop++)
 	{
@@ -251,9 +252,9 @@ void Graphics::DrawCircle(int x, int y, int radius, Color c)
 			const int x_diff = x - x_loop;
 			const int y_diff = y - y_loop;
 
-			if ((x_diff * x_diff)+(y_diff * y_diff) <= radius_suq)
+			if (((x_diff * x_diff) + (y_diff * y_diff) <= radius_suq) && ((x_diff * x_diff) + (y_diff * y_diff) >= thickness_suq))
 			{
-				PutPixel(x_loop,y_loop,c);
+				PutPixel(x_loop, y_loop, c);
 			}
 		}
 	}
