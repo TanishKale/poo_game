@@ -245,9 +245,9 @@ void Graphics::DrawDonut(int x, int y, int radius, int thickness, Color c)
 	const int radius_suq = radius * radius;
 	const int thickness_suq = (radius - thickness) * (radius - thickness);
 
-	for (int x_loop = x - radius; x_loop < x + radius; x_loop++)
+	for (int x_loop = x - radius; x_loop < x + radius + 1; x_loop++)
 	{
-		for (int y_loop = y - radius; y_loop < y + radius; y_loop++)
+		for (int y_loop = y - radius; y_loop < y + radius + 1; y_loop++)
 		{
 			const int x_diff = x - x_loop;
 			const int y_diff = y - y_loop;
